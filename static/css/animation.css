@@ -1,0 +1,39 @@
+@keyframes hideSplashScreen {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+#splash-screen {
+  background: white;
+  position: absolute;
+  height: 100vh; /* 화면 높이의 100% */
+  width: 100vw; /* 화면 너비의 100% */
+  top: 0;
+  display: flex;
+  font-size: 100px;
+  justify-content: center;
+  align-items: center;
+  animation: hideSplashScreen 0.4s ease-in-out forwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes logoAnimation {
+  from {
+    transform: none;
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+#logo {
+  width: 200px;
+  height: 200px;
+  animation: logoAnimation 1s linear;
+  margin-right: 80px;
+}
