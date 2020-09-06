@@ -3,7 +3,6 @@ from exporter import save_to_file
 from scrapper import get_all_jobs
 from flask import Flask, render_template, request, redirect, send_file
 
-
 os.system("clear")
 app = Flask("SuperPythonJobSrapper")
 
@@ -16,7 +15,6 @@ def json_writer(name, datas):
             json.dump(datas, json_file)
     except:
         pass
-
     return
 
 
@@ -62,17 +60,15 @@ def scrap_result():
 @app.route("/export")
 def export():
     try:
-        job = request.args.get("job")
-        if not job:
+        job_name = request.args.get("job")
+        if not job_name:
             raise Exception()
-        job = job.lower()
-        jobs = db.get(job)
+        job_name = job_name.lower()
+        jobs = db.get(job_name)
         if not jobs:
-            print("db 없음")
-            print(jobs)
             raise Exception()
-        save_to_file(jobs)
-        return send_file("jobs.csv")
+        save_to_file(jobs, job_name)
+        return send_file(f"{job_name}.csv")
     except Exception as e:
         print(str(e))
         return redirect("/")
